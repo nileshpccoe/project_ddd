@@ -1,14 +1,13 @@
 import os 
 import sys
-from cnnClassifier import logger
-from cnnClassifier.config.config_entity import DataTransformConfig
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from cnnClassifier.entity.config_entity import DataTransformConfig
 import zipfile
 
 
 
-
 class DataTransform:
-    def __init__(self, config: DataIngestionConfig) -> None:
+    def __init__(self, config: DataTransformConfig) -> None:
         self.config = config
 
     def data_path(self):
@@ -31,18 +30,6 @@ class DataTransform:
         except Exception as e:
             raise e
         return train_data, validation_data, test_data
+        
 
-if __name__=="__main__":
-        # Define paths
-        train_path = "/content/drive/MyDrive/DDD_data/train_data"
-        test_path = "/content/drive/MyDrive/DDD_data/test_data"
-
-        # Create config
-        config = DataTransformConfig(train_path, test_path)
-
-        # Initialize DataIngestion with the config
-        data_trasnform = DataTransform(config)
-
-        # Get data paths
-        train_data, validation_data, test_data = data_transform.data_path()    
 
